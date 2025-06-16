@@ -2,22 +2,20 @@ import { useNavigate } from "react-router-dom";
 import ProductForm from "../components/ProductForm";
 
 function AddProduct() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleAdd = (product) => {
-        const existing = JSON.parse(localStorage.getItem("products")) || [];
+  const handleAdd = (product) => {
+    const existing = JSON.parse(localStorage.getItem("products")) || [];
+    const updated = [...existing, product];
+    localStorage.setItem("products", JSON.stringify(updated));
+    navigate("/");
+  };
 
-        const updated = [...existing, product];
-        localStorage.setItem("products", JSON.stringify(updated));
-
-        navigate("/"); 
-    };
-
-    return (
-        <div>
-            <ProductForm onAdd={handleAdd} />
-        </div>
-    );
+  return (
+    <div>
+      <ProductForm onAdd={handleAdd} />
+    </div>
+  );
 }
 
 export default AddProduct;

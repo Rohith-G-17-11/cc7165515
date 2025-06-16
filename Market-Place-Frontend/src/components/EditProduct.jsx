@@ -1,6 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import ProductForm from "../components/ProductForm";
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import ProductForm from './ProductForm';
 
 function EditProduct() {
   const { id } = useParams();
@@ -8,19 +8,24 @@ function EditProduct() {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    const products = JSON.parse(localStorage.getItem("products")) || [];
-    const found = products.find((p) => p.id === parseInt(id));
-    if (found) setProduct(found);
-  }, [id]);
+    const stored = JSON.parse(localStorage.getItem('products')) || [];
+    const found = stored.find(p => p.id === parseInt(id));
+    if (!found) return navigate('/');
+    setProduct(found);
+  }, [id, navigate]);
 
   const handleUpdate = (updatedProduct) => {
-    const products = JSON.parse(localStorage.getItem("products")) || [];
-    const updated = products.map((p) => (p.id === parseInt(id) ? updatedProduct : p));
-    localStorage.setItem("products", JSON.stringify(updated));
-    navigate("/");
-  };
+    const stored = JSON.parse(localStorage.getItem('products')) || [];
+    const updatedList = stored.map(p => p.id === parseInt(id) ? updatedProduct : p);
+    localStorage.setItem('products', JSON.stringify(updatedList));
+    navigate('/');
+  }
 
-  return product ? <ProductForm initialData={product} onAdd={handleUpdate} /> : <p>Loading...</p>;
+  return (
+    <div>
+      {product && <ProductForm onAdd={handleUpdate} initialData={product} />}
+    </div>
+  );
 }
 
 export default EditProduct;
