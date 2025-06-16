@@ -2,13 +2,12 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from "./pages/home"; 
 import AddProduct from "./pages/AddProduct"; 
-
+import EditProduct from "./components/EditProduct";
 function App() {
   return (
     <Router>
-      <div className="min-h-screen flex flex-col bg-gray-900 text-white"> {/* Dark background & light text */}
+      <div className="min-h-screen flex flex-col bg-gray-900 text-white"> 
 
-        {/* Navbar */}
         <nav className="w-full bg-gray-800 shadow-md">
           <div className="max-w-5xl mx-auto flex justify-between items-center px-6 py-4">
             <h1 className="text-2xl font-bold text-lime-400">
@@ -37,6 +36,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/add" element={<AddProduct />} />
+              <Route path="/edit/:id" element={<EditProduct />} />
             </Routes>
           </div>
         </main>
