@@ -1,13 +1,17 @@
 @import "tailwindcss";
 
+/* Basic Reset & Font */
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
+  background-color: #f8fafc; /* Light background */
+  color: #1f2937; /* Dark gray text */
 }
 
+/* Root Element */
 #root {
   height: 100%;
   width: 100%;
@@ -16,6 +20,7 @@ html, body {
   text-align: center;
 }
 
+/* Logo Style */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -24,7 +29,7 @@ html, body {
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #84cc16aa); /* lime glow */
 }
 
 .logo.react:hover {
@@ -46,10 +51,48 @@ html, body {
   }
 }
 
+/* Card Styles */
 .card {
   padding: 2em;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* Info Text */
 .read-the-docs {
-  color: #888;
+  color: #666;
+}
+
+/* Product Card Hover Effect */
+.card-hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+  border: 2px solid transparent;
+}
+
+.card-hover:hover {
+  transform: scale(1.05);
+  border-color: #84cc16; /* Tailwind lime-400 */
+  box-shadow: 0 0 15px #84cc16;
+}
+
+/* Fade In Animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Zoom In Animation */
+.zoom-in {
+  animation: zoomIn 0.5s ease-out both;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }

@@ -24,7 +24,7 @@ function EditProduct() {
   };
 
   return (
-    <div>
+    <div className="fade-in">
       {product && <ProductForm onAdd={handleUpdate} initialData={product} />}
     </div>
   );
