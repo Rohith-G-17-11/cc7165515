@@ -15,7 +15,7 @@ function Home() {
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/products/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`, {
       method: 'DELETE',
     });
     fetchProducts(); // refresh after delete
