@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function ProductCard({ product, onDelete }) {
+function ProductCard({ product, onDelete, deleting }) {
   const navigate = useNavigate();
 
   return (
@@ -16,7 +16,13 @@ function ProductCard({ product, onDelete }) {
       <p className="text-sm text-gray-500 mb-3">{product.description}</p>
       <div className="flex gap-3">
         <button onClick={() => navigate(`/edit/${product._id}`)} className="bg-yellow-400 text-lime-700 px-3 py-1 rounded hover:bg-yellow-300">Edit</button>
-        <button onClick={() => onDelete(product._id)} className="bg-red-400 text-lime-700 px-3 py-1 rounded hover:bg-red-300">Delete</button>
+        <button
+          onClick={() => onDelete(product._id)}
+          className={`px-3 py-1 rounded text-lime-700 ${deleting ? 'bg-red-200 cursor-not-allowed' : 'bg-red-400 hover:bg-red-300'}`}
+          disabled={deleting}
+        >
+          {deleting ? 'Deleting...' : 'Delete'}
+        </button>
       </div>
     </div>
   );
