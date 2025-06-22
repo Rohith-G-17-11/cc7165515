@@ -56,6 +56,20 @@ app.delete("/api/products/:id", async (req, res) => {
   res.json({ message: "Product deleted successfully" });
 });
 
+// search option
+app.get("/api/products", async (req, res) => {
+  const searchQuery = req.query.search || "";
+  const products = await Product.find({
+    $or: [
+      { name: { $regex: searchQuery, $options: "i" } },
+      { description: { $regex: searchQuery, $options: "i" } }
+    ]
+  });
+  res.json(products);
+});
+
+
+
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
